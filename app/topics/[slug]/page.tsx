@@ -35,9 +35,9 @@ export default function TopicPage({ params }: PageProps) {
   }
 
   // Filter posts that belong to this pillar
-  const pillarPosts = posts.filter((post: any) => post.pillarId === pillar.id);
-  const pillarPost = pillarPosts.find((post: any) => post.isPillarPost);
-  const clusterPosts = pillarPosts.filter((post: any) => !post.isPillarPost);
+  const pillarPosts = posts.filter((post: any) => post.pillarId === pillar.id) as any[];
+  const pillarPost = pillarPosts.find((post: any) => post.isPillarPost) as any;
+  const clusterPosts = pillarPosts.filter((post: any) => !post.isPillarPost) as any[];
 
   return (
     <div className="py-12 px-4">
