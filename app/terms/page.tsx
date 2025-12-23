@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Terms of Service - ResaleEdge | Reseller Hardware, Software & Systems That Scale',
-  description: 'Terms of service for ResaleEdge | Reseller Hardware, Software & Systems That Scale. Please read these terms carefully before using our website.',
+  title: 'Terms of Service - Resale Edge',
+  description: 'Terms of service for Resale Edge. Please read these terms carefully before using our website.',
 };
 
 export default function TermsPage() {

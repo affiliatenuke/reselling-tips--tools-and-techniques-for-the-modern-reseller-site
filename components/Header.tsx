@@ -12,8 +12,8 @@ export default function Header() {
       <nav className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="ResaleEdge | Reseller Hardware, Software & Systems That Scale logo" className="h-10 w-10 rounded-md object-contain" />
-              <span className="font-heading text-2xl font-bold text-primary">ResaleEdge | Reseller Hardware, Software & Systems That Scale</span>
+              <img src="/logo.png" alt="Resale Edge logo" className="h-10 w-10 rounded-md object-contain" />
+              <span className="font-heading text-2xl font-bold text-primary">Resale Edge</span>
             </Link>
 
           {/* Desktop Navigation */}

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Affiliate Disclosure - ResaleEdge | Reseller Hardware, Software & Systems That Scale',
-  description: 'Affiliate disclosure for ResaleEdge | Reseller Hardware, Software & Systems That Scale. Learn about our affiliate relationships and how we earn commissions.',
+  title: 'Affiliate Disclosure - Resale Edge',
+  description: 'Affiliate disclosure for Resale Edge. Learn about our affiliate relationships and how we earn commissions.',
 };
 
 export default function AffiliateDisclosurePage() {

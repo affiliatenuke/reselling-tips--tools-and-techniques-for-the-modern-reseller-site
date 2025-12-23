@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${(post as any).title} | ResaleEdge | Reseller Hardware, Software & Systems That Scale`,
+    title: `${(post as any).title} | Resale Edge`,
     description: (post as any).metaDescription || (post as any).excerpt,
   };
 }

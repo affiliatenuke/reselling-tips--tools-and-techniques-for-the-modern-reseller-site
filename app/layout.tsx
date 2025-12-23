@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'ResaleEdge | Reseller Hardware, Software & Systems That Scale',
+  title: 'Resale Edge',
   description: 'Build your reselling business right. Reviews of software tools, photo setups, shipping equipment, and processes and workflow for the modern reseller.',
 };
 

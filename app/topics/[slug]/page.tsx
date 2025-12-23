@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${(pillar as any).seoTitle || (pillar as any).name} | ResaleEdge | Reseller Hardware, Software & Systems That Scale`,
+    title: `${(pillar as any).seoTitle || (pillar as any).name} | Resale Edge`,
     description: (pillar as any).seoDescription || (pillar as any).description,
   };
 }
