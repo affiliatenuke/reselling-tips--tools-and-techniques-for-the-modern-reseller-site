@@ -1,6 +1,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import posts from '@/data/posts.json';
+import JsonLd from '@/components/JsonLd';
+
+const baseUrl = 'https://resaleedge.com';
+const siteName = 'Resale Edge';
 
 interface PageProps {
   params: { slug: string };
@@ -12,16 +17,45 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const post = posts.find((p: any) => p.slug === params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const post = posts.find((p: any) => p.slug === params.slug) as any;
   
   if (!post) {
     return { title: 'Post Not Found' };
   }
 
+  const description = post.metaDescription || post.excerpt || post.title;
+  const postUrl = `${baseUrl}/blog/${post.slug}`;
+
   return {
-    title: `${(post as any).title} | Resale Edge`,
-    description: (post as any).metaDescription || (post as any).excerpt,
+    title: post.title,
+    description: description,
+    alternates: {
+      canonical: postUrl,
+    },
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: description,
+      url: postUrl,
+      siteName: siteName,
+      publishedTime: post.publishDate || new Date().toISOString(),
+      authors: post.authorName ? [post.authorName] : [siteName],
+      images: post.featuredImage ? [
+        {
+          url: post.featuredImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: description,
+      images: post.featuredImage ? [post.featuredImage] : [],
+    },
   };
 }
 
@@ -32,75 +66,136 @@ export default function BlogPost({ params }: PageProps) {
     notFound();
   }
 
+  // Article structured data
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt || post.title,
+    author: {
+      '@type': 'Person',
+      name: post.authorName || siteName,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteName,
+      url: baseUrl,
+    },
+    datePublished: post.publishDate || new Date().toISOString(),
+    dateModified: post.publishDate || new Date().toISOString(),
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/blog/${post.slug}`,
+    },
+    ...(post.featuredImage && {
+      image: {
+        '@type': 'ImageObject',
+        url: post.featuredImage,
+      },
+    }),
+  };
+
+  // Breadcrumb structured data
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: baseUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: `${baseUrl}/blog`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `${baseUrl}/blog/${post.slug}`,
+      },
+    ],
+  };
+
   return (
-    <article className="py-12 px-4">
-      <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <header className="mb-8">
-          <Link 
-            href="/blog" 
-            className="text-primary hover:underline mb-4 inline-block"
-          >
-            &larr; Back to Blog
-          </Link>
-          
-          {post.category && (
-            <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4 ml-4">
-              {post.category}
-            </span>
-          )}
-          
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
-            {post.title}
-          </h1>
-          
-          {post.excerpt && (
-            <p className="text-xl text-gray-600 mb-4">
-              {post.excerpt}
-            </p>
-          )}
-          
-          <div className="flex items-center gap-4 text-sm text-gray-500">
-            {post.authorName && <span>By {post.authorName}</span>}
-            {post.publishDate && (
-              <span>{new Date(post.publishDate).toLocaleDateString()}</span>
+    <>
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <article className="py-12 px-4">
+        <div className="max-w-3xl mx-auto">
+          {/* Header */}
+          <header className="mb-8">
+            <Link 
+              href="/blog" 
+              className="text-primary hover:underline mb-4 inline-block"
+            >
+              &larr; Back to Blog
+            </Link>
+            
+            {post.category && (
+              <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4 ml-4">
+                {post.category}
+              </span>
             )}
-          </div>
-        </header>
-
-        {/* Featured Image */}
-        {post.featuredImage && (
-          <img
-            src={post.featuredImage}
-            alt={post.title}
-            className="w-full h-64 md:h-96 object-cover rounded-xl mb-8"
-          />
-        )}
-
-        {/* Content */}
-        <div 
-          className="prose prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
-        />
-
-        {/* Tags */}
-        {post.tags && post.tags.length > 0 && (
-          <div className="mt-12 pt-8 border-t">
-            <h3 className="font-semibold mb-4">Tags:</h3>
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag: string) => (
-                <span
-                  key={tag}
-                  className="bg-gray-100 px-3 py-1 rounded-full text-sm"
-                >
-                  {tag}
-                </span>
-              ))}
+            
+            <h1 className="font-heading text-4xl md:text-5xl font-bold mb-4">
+              {post.title}
+            </h1>
+            
+            {post.excerpt && (
+              <p className="text-xl text-gray-600 mb-4">
+                {post.excerpt}
+              </p>
+            )}
+            
+            <div className="flex items-center gap-4 text-sm text-gray-500">
+              {post.authorName && <span>By {post.authorName}</span>}
+              {post.publishDate && (
+                <time dateTime={post.publishDate}>
+                  {new Date(post.publishDate).toLocaleDateString()}
+                </time>
+              )}
             </div>
-          </div>
-        )}
-      </div>
-    </article>
+          </header>
+
+          {/* Featured Image */}
+          {post.featuredImage && (
+            <img
+              src={post.featuredImage}
+              alt={post.title}
+              className="w-full h-64 md:h-96 object-cover rounded-xl mb-8"
+            />
+          )}
+
+          {/* Content */}
+          <div 
+            className="prose prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
+          />
+
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="mt-12 pt-8 border-t">
+              <h3 className="font-semibold mb-4">Tags:</h3>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag: string) => (
+                  <span
+                    key={tag}
+                    className="bg-gray-100 px-3 py-1 rounded-full text-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </article>
+    </>
   );
 }
 
