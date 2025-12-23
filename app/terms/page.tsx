@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Terms of Service - Reselling Tips, Tools and Techniques For The Modern Reseller',
-  description: 'Terms of service for Reselling Tips, Tools and Techniques For The Modern Reseller. Please read these terms carefully before using our website.',
+  title: 'Terms of Service - ResaleEdge | Reseller Hardware, Software & Systems That Scale',
+  description: 'Terms of service for ResaleEdge | Reseller Hardware, Software & Systems That Scale. Please read these terms carefully before using our website.',
 };
 
 export default function TermsPage() {

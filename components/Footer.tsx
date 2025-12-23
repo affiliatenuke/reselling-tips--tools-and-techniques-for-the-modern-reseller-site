@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="font-heading text-2xl font-bold">
-              Reselling Tips, Tools and Techniques For The Modern Reseller
+              ResaleEdge | Reseller Hardware, Software & Systems That Scale
             </Link>
             <p className="mt-4 text-gray-400">
               Your trusted resource for quality content and insights.
@@ -52,7 +52,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; {currentYear} Reselling Tips, Tools and Techniques For The Modern Reseller. All rights reserved.</p>
+          <p>&copy; {currentYear} ResaleEdge | Reseller Hardware, Software & Systems That Scale. All rights reserved.</p>
         </div>
       </div>
     </footer>

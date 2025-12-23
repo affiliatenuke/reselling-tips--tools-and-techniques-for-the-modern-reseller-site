@@ -9,7 +9,18 @@ export default function BlogPage() {
           Blog
         </h1>
         <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Explore our latest articles and insights for People that resell items on ebay, poshmark, mecari and other on-line selling platforms. These people are looking for software tools for inventory management, Cross Posting, Listing automation amoung others.  They are also looking for tips and techniques to improve there business
+          Explore our latest articles and insights for Target Audience:
+
+Primary: Established resellers doing $1K-$10K+/month looking to professionalize their operations with better equipment, software, and workflows
+Secondary: Ambitious beginners who want to start with the right infrastructure instead of cobbling things together
+Demographics: 25-55, treat reselling as a real business (not just decluttering), willing to invest in tools that save time and increase profit margins
+Pain points:
+
+Inefficient photo setups slowing down listings
+Disorganized inventory and storage systems
+Decision paralysis on which software subscriptions are worth it
+Shipping station chaos eating into margins
+Scaling bottlenecks from manual processes
         </p>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

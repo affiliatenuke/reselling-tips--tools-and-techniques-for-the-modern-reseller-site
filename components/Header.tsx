@@ -10,9 +10,10 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <nav className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="font-heading text-2xl font-bold text-primary">
-            Reselling Tips, Tools and Techniques For The Modern Reseller
-          </Link>
+          <Link href="/" className="flex items-center gap-2">
+              <img src="/logo.png" alt="ResaleEdge | Reseller Hardware, Software & Systems That Scale logo" className="h-10 w-10 rounded-md object-contain" />
+              <span className="font-heading text-2xl font-bold text-primary">ResaleEdge | Reseller Hardware, Software & Systems That Scale</span>
+            </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">

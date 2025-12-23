@@ -8,9 +8,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#2563eb',
-        secondary: '#64748b',
-        accent: '#f59e0b',
+        primary: '#f59e0b',
+        secondary: '#2563eb',
+        accent: '#64748b',
       },
       fontFamily: {
         heading: ['Lora', 'Georgia', 'serif'],

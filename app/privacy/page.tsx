@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Privacy Policy - Reselling Tips, Tools and Techniques For The Modern Reseller',
-  description: 'Privacy policy for Reselling Tips, Tools and Techniques For The Modern Reseller. Learn how we collect, use, and protect your personal information.',
+  title: 'Privacy Policy - ResaleEdge | Reseller Hardware, Software & Systems That Scale',
+  description: 'Privacy policy for ResaleEdge | Reseller Hardware, Software & Systems That Scale. Learn how we collect, use, and protect your personal information.',
 };
 
 export default function PrivacyPage() {

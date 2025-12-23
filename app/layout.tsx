@@ -4,8 +4,19 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Reselling Tips, Tools and Techniques For The Modern Reseller',
-  description: 'Welcome to Reselling Tips, Tools and Techniques For The Modern Reseller - your trusted resource for People that resell items on ebay, poshmark, mecari and other on-line selling platforms. These people are looking for software tools for inventory management, Cross Posting, Listing automation amoung others.  They are also looking for tips and techniques to improve there business',
+  title: 'ResaleEdge | Reseller Hardware, Software & Systems That Scale',
+  description: 'Welcome to ResaleEdge | Reseller Hardware, Software & Systems That Scale - your trusted resource for Target Audience:
+
+Primary: Established resellers doing $1K-$10K+/month looking to professionalize their operations with better equipment, software, and workflows
+Secondary: Ambitious beginners who want to start with the right infrastructure instead of cobbling things together
+Demographics: 25-55, treat reselling as a real business (not just decluttering), willing to invest in tools that save time and increase profit margins
+Pain points:
+
+Inefficient photo setups slowing down listings
+Disorganized inventory and storage systems
+Decision paralysis on which software subscriptions are worth it
+Shipping station chaos eating into margins
+Scaling bottlenecks from manual processes',
 };
 
 export default function RootLayout({
