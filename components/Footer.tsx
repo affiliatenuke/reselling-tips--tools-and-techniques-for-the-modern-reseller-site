@@ -39,13 +39,13 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <span className="text-gray-400">Privacy Policy</span>
+                <Link href="/privacy" className="text-gray-400 hover:text-white transition">Privacy Policy</Link>
               </li>
               <li>
-                <span className="text-gray-400">Terms of Service</span>
+                <Link href="/terms" className="text-gray-400 hover:text-white transition">Terms of Service</Link>
               </li>
               <li>
-                <span className="text-gray-400">Affiliate Disclosure</span>
+                <Link href="/affiliate-disclosure" className="text-gray-400 hover:text-white transition">Affiliate Disclosure</Link>
               </li>
             </ul>
           </div>
