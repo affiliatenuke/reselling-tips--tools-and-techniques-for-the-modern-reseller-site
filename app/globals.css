@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lora', serif;
+}
+
+.prose {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.prose h2 {
+  @apply text-2xl font-bold mt-8 mb-4;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold mt-6 mb-3;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose ul, .prose ol {
+  @apply mb-4 pl-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose a {
+  @apply text-primary underline hover:no-underline;
+}
