@@ -15,21 +15,10 @@ export default function Home() {
       <section className="relative bg-gradient-to-br from-primary to-secondary text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">
-            ResaleEdge | Reseller Hardware, Software & Systems That Scale
+            {"ResaleEdge | Reseller Hardware, Software & Systems That Scale"}
           </h1>
           <p className="text-xl md:text-2xl mb-8 opacity-90">
-            Your trusted resource for Target Audience:
-
-Primary: Established resellers doing $1K-$10K+/month looking to professionalize their operations with better equipment, software, and workflows
-Secondary: Ambitious beginners who want to start with the right infrastructure instead of cobbling things together
-Demographics: 25-55, treat reselling as a real business (not just decluttering), willing to invest in tools that save time and increase profit margins
-Pain points:
-
-Inefficient photo setups slowing down listings
-Disorganized inventory and storage systems
-Decision paralysis on which software subscriptions are worth it
-Shipping station chaos eating into margins
-Scaling bottlenecks from manual processes
+            {"Build your reselling business right. Reviews of software tools, photo setups, shipping equipment, and processes and workflow for the modern reseller."}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
