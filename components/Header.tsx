@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import pillars from '@/data/pillars.json';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,6 +21,15 @@ export default function Header() {
             <Link href="/" className="hover:text-primary transition">
               Home
             </Link>
+            {pillars.map((pillar: any) => (
+              <Link
+                key={pillar.id}
+                href={`/topics/${pillar.slug}`}
+                className="hover:text-primary transition"
+              >
+                {pillar.name}
+              </Link>
+            ))}
             <Link href="/blog" className="hover:text-primary transition">
               Blog
             </Link>
@@ -67,6 +77,16 @@ export default function Header() {
               >
                 Home
               </Link>
+              {pillars.map((pillar: any) => (
+                <Link
+                  key={pillar.id}
+                  href={`/topics/${pillar.slug}`}
+                  className="hover:text-primary transition"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {pillar.name}
+                </Link>
+              ))}
               <Link
                 href="/blog"
                 className="hover:text-primary transition"
