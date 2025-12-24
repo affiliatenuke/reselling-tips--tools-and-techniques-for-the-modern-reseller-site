@@ -159,7 +159,7 @@ export default function BlogPost({ params }: PageProps) {
 
             {/* Meta badges */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              {post.isPillarPost && (
+              {post.isFeaturedPost && (
                 <span className="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">
                   Complete Guide
                 </span>

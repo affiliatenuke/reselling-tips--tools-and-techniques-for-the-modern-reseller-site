@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: post.publishDate ? new Date(post.publishDate) : new Date(),
     changeFrequency: 'weekly' as const,
-    priority: post.isPillarPost ? 0.9 : 0.7,
+    priority: post.isFeaturedPost ? 0.9 : 0.7,
   }));
 
   // Topic/Pillar pages

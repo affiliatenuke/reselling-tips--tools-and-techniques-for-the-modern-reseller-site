@@ -4,8 +4,8 @@ import posts from '@/data/posts.json';
 import pillars from '@/data/pillars.json';
 
 export default function BlogPage() {
-  const pillarPosts = posts.filter((p: any) => p.isPillarPost);
-  const regularPosts = posts.filter((p: any) => !p.isPillarPost);
+  const featuredPosts = posts.filter((p: any) => p.isFeaturedPost);
+  const regularPosts = posts.filter((p: any) => !p.isFeaturedPost);
   
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -46,7 +46,7 @@ export default function BlogPage() {
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Featured Guides */}
-        {pillarPosts.length > 0 && (
+        {featuredPosts.length > 0 && (
           <section className="mb-16">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
@@ -59,7 +59,7 @@ export default function BlogPage() {
               </h2>
             </div>
             <div className="grid lg:grid-cols-2 gap-6">
-              {pillarPosts.map((post: any) => (
+              {featuredPosts.map((post: any) => (
                 <PostCard key={post.id} post={post} featured />
               ))}
             </div>
@@ -69,7 +69,7 @@ export default function BlogPage() {
         {/* All Articles */}
         <section>
           <h2 className="font-heading text-2xl font-semibold text-neutral-900 mb-8">
-            {pillarPosts.length > 0 ? 'More Articles' : 'All Articles'}
+            {featuredPosts.length > 0 ? 'More Articles' : 'All Articles'}
           </h2>
           
           {regularPosts.length > 0 ? (

@@ -4,8 +4,9 @@
     "nicheId": "a644cb2b-5dad-42bd-8bd6-f5cccfe6f37e",
     "name": "Tools",
     "slug": "tools",
-    "description": "Software reviews and comparisons for reselling efficiency",
+    "description": " Software that helps you list faster, stay organized, and sell more across platforms.",
     "icon": null,
+    "heroImage": "/uploads/1766557011433-b29fdh.png",
     "sortOrder": 0,
     "seoTitle": null,
     "seoDescription": null
@@ -17,6 +18,7 @@
     "slug": "gear",
     "description": "Hardware and equipment for professional reselling operations",
     "icon": null,
+    "heroImage": null,
     "sortOrder": 1,
     "seoTitle": null,
     "seoDescription": null
@@ -28,6 +30,7 @@
     "slug": "supplies",
     "description": "Shipping and packing materials to protect products and margins",
     "icon": null,
+    "heroImage": null,
     "sortOrder": 2,
     "seoTitle": null,
     "seoDescription": null
@@ -39,6 +42,7 @@
     "slug": "systems",
     "description": "Workflows and processes that help you scale without burnout",
     "icon": null,
+    "heroImage": null,
     "sortOrder": 3,
     "seoTitle": null,
     "seoDescription": null
@@ -50,6 +54,7 @@
     "slug": "platforms",
     "description": "Platform-specific strategies and tips",
     "icon": null,
+    "heroImage": null,
     "sortOrder": 4,
     "seoTitle": null,
     "seoDescription": null

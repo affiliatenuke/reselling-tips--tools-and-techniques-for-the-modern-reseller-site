@@ -7,7 +7,7 @@ import pillars from '@/data/pillars.json';
 import leadMagnets from '@/data/lead-magnets.json';
 
 export default function Home() {
-  const pillarPosts = posts.filter((p: any) => p.isPillarPost);
+  const featuredPosts = posts.filter((p: any) => p.isFeaturedPost);
   const recentPosts = posts.slice(0, 6);
   const featuredLead = leadMagnets[0];
 
@@ -108,8 +108,8 @@ export default function Home() {
         </section>
       )}
 
-      {/* Featured Pillar Posts */}
-      {pillarPosts.length > 0 && (
+      {/* Featured Posts */}
+      {featuredPosts.length > 0 && (
         <section className="py-20 lg:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12 lg:mb-16">
@@ -125,7 +125,7 @@ export default function Home() {
             </div>
             
             <div className="grid lg:grid-cols-2 gap-8">
-              {pillarPosts.slice(0, 4).map((post: any) => (
+              {featuredPosts.slice(0, 4).map((post: any) => (
                 <Link 
                   key={post.id}
                   href={`/blog/${post.slug}`}

@@ -8,7 +8,7 @@ interface Post {
   featuredImage?: string;
   category?: string;
   publishDate?: string;
-  isPillarPost?: boolean;
+  isFeaturedPost?: boolean;
 }
 
 export default function PostCard({ post, featured = false }: { post: Post; featured?: boolean }) {
@@ -32,7 +32,7 @@ export default function PostCard({ post, featured = false }: { post: Post; featu
               featured ? 'h-48 lg:h-full lg:min-h-[200px]' : 'h-48'
             }`} />
           )}
-          {post.isPillarPost && (
+          {post.isFeaturedPost && (
             <span className="absolute top-3 left-3 px-2.5 py-1 bg-white/90 backdrop-blur-sm text-primary text-xs font-medium rounded-full">
               Complete Guide
             </span>
