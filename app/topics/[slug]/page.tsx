@@ -51,10 +51,10 @@ export default function TopicPage({ params }: PageProps) {
               alt=""
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/60 via-neutral-900/40 to-neutral-900/30" />
+            <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/75 via-neutral-900/55 to-neutral-900/40" />
           </div>
           
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
             {/* Breadcrumb - upper right */}
             <nav className="absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 flex items-center text-sm text-white/70">
               <Link href="/" className="hover:text-white transition">Home</Link>
@@ -79,7 +79,7 @@ export default function TopicPage({ params }: PageProps) {
         </div>
       ) : (
         <div className="relative bg-gradient-to-br from-neutral-50 to-white border-b border-neutral-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
             {/* Breadcrumb - upper right */}
             <nav className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center text-sm text-neutral-500">
               <Link href="/" className="hover:text-primary transition">Home</Link>
