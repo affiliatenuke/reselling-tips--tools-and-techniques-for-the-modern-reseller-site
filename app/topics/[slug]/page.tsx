@@ -56,7 +56,7 @@ export default function TopicPage({ params }: PageProps) {
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
             {/* Breadcrumb */}
-            <nav className="flex items-center text-sm text-white/70 mb-8">
+            <nav className="flex items-center justify-center text-sm text-white/70 mb-8">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <svg className="w-4 h-4 mx-2 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -64,8 +64,8 @@ export default function TopicPage({ params }: PageProps) {
               <span className="text-white font-medium">{pillar.name}</span>
             </nav>
             
-            <div className="max-w-3xl">
-              <div className="flex items-center gap-4 mb-6">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-4 mb-6">
                 <span className="px-4 py-2 bg-white/20 backdrop-blur text-white text-sm font-medium rounded-full">
                   {topicPosts.length} article{topicPosts.length !== 1 ? 's' : ''}
                 </span>
@@ -76,7 +76,7 @@ export default function TopicPage({ params }: PageProps) {
               </h1>
               
               {pillar.description && (
-                <p className="text-lg lg:text-xl text-white/80 max-w-2xl">
+                <p className="text-lg lg:text-xl text-white/80 max-w-2xl mx-auto">
                   {pillar.description}
                 </p>
               )}
@@ -87,7 +87,7 @@ export default function TopicPage({ params }: PageProps) {
         <div className="bg-gradient-to-br from-neutral-50 to-white border-b border-neutral-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
             {/* Breadcrumb */}
-            <nav className="flex items-center text-sm text-neutral-500 mb-8">
+            <nav className="flex items-center justify-center text-sm text-neutral-500 mb-8">
               <Link href="/" className="hover:text-primary transition">Home</Link>
               <svg className="w-4 h-4 mx-2 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -95,8 +95,8 @@ export default function TopicPage({ params }: PageProps) {
               <span className="text-neutral-900 font-medium">{pillar.name}</span>
             </nav>
             
-            <div className="max-w-3xl">
-              <div className="flex items-center gap-4 mb-6">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
                   <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -112,7 +112,7 @@ export default function TopicPage({ params }: PageProps) {
               </h1>
               
               {pillar.description && (
-                <p className="text-lg lg:text-xl text-neutral-600">
+                <p className="text-lg lg:text-xl text-neutral-600 max-w-2xl mx-auto">
                   {pillar.description}
                 </p>
               )}
