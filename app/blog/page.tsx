@@ -18,7 +18,7 @@ export default function BlogPage() {
             All Articles
           </h1>
           <p className="text-neutral-600 text-lg max-w-2xl">
-            Insights, guides, and tips for Target Audience:\n\nPrimary: Established resellers doing $1K-$10K+/month looking to professionalize their operations with better equipment, software, and workflows\nSecondary: Ambitious beginners who want to start with the right infrastructure instead of cobbling things together\nDemographics: 25-55, treat reselling as a real business (not just decluttering), willing to invest in tools that save time and increase profit margins\nPain points:\n\nInefficient photo setups slowing down listings\nDisorganized inventory and storage systems\nDecision paralysis on which software subscriptions are worth it\nShipping station chaos eating into margins\nScaling bottlenecks from manual processes.
+            Insights, guides, and tips for Target Audience:.
           </p>
         </div>
       </div>

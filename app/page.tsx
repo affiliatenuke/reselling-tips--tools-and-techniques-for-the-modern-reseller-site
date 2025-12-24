@@ -24,7 +24,7 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-6">
-              For Target Audience:\n\nPrimary: Established resellers doing $1K-$10K+/month looking to professionalize their operations with better equipment, software, and workflows\nSecondary: Ambitious beginners who want to start with the right infrastructure instead of cobbling things together\nDemographics: 25-55, treat reselling as a real business (not just decluttering), willing to invest in tools that save time and increase profit margins\nPain points:\n\nInefficient photo setups slowing down listings\nDisorganized inventory and storage systems\nDecision paralysis on which software subscriptions are worth it\nShipping station chaos eating into margins\nScaling bottlenecks from manual processes
+              Target Audience:
             </span>
             
             <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-semibold text-neutral-900 mb-6 text-balance">
