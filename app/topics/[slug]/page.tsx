@@ -121,12 +121,25 @@ export default function TopicPage({ params }: PageProps) {
             
             <Link 
               href={`/blog/${featuredPost.slug}`}
-              className="group block relative overflow-hidden bg-gradient-to-br from-primary via-primary to-secondary text-white p-8 lg:p-12 rounded-2xl hover:shadow-2xl transition-all duration-300"
+              className="group block relative overflow-hidden text-white p-8 lg:p-12 rounded-2xl hover:shadow-2xl transition-all duration-300"
             >
-              {/* Background pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              </div>
+              {/* Background - either featured image or gradient */}
+              {featuredPost.featuredImage ? (
+                <>
+                  <img 
+                    src={featuredPost.featuredImage}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/80 via-neutral-900/60 to-neutral-900/40" />
+                </>
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-secondary">
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                  </div>
+                </div>
+              )}
               
               <div className="relative">
                 <span className="inline-block px-3 py-1 bg-white/20 text-white text-sm font-medium rounded-full mb-4">
