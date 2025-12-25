@@ -4,9 +4,18 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import pillars from '@/data/pillars.json';
 
+// Try to import categories, fallback to empty array
+let categories: { name: string; slug: string }[] = [];
+try {
+  categories = require('@/data/categories.json');
+} catch {
+  categories = [];
+}
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +52,36 @@ export default function Header() {
                 {pillar.name}
               </Link>
             ))}
+            
+            {/* Categories Dropdown */}
+            {categories.length > 0 && (
+              <div className="relative">
+                <button
+                  className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-primary rounded-lg hover:bg-neutral-50 transition flex items-center gap-1"
+                  onClick={() => setShowCategories(!showCategories)}
+                  onBlur={() => setTimeout(() => setShowCategories(false), 150)}
+                >
+                  Categories
+                  <svg className={`w-4 h-4 transition-transform ${showCategories ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showCategories && (
+                  <div className="absolute top-full left-0 mt-1 w-48 bg-white rounded-lg shadow-lg border border-neutral-100 py-1 z-50">
+                    {categories.map((cat: any) => (
+                      <Link
+                        key={cat.slug}
+                        href={`/category/${cat.slug}`}
+                        className="block px-4 py-2 text-sm text-neutral-600 hover:text-primary hover:bg-neutral-50 transition"
+                      >
+                        {cat.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            
             <Link 
               href="/blog" 
               className="px-4 py-2 text-sm font-medium text-neutral-600 hover:text-primary rounded-lg hover:bg-neutral-50 transition"
@@ -79,7 +118,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         <div className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          isMenuOpen ? 'max-h-96 pb-6' : 'max-h-0'
+          isMenuOpen ? 'max-h-[500px] pb-6' : 'max-h-0'
         }`}>
           <div className="pt-4 space-y-1 border-t border-neutral-100">
             {pillars.map((pillar: any) => (
@@ -92,6 +131,26 @@ export default function Header() {
                 {pillar.name}
               </Link>
             ))}
+            
+            {/* Mobile Categories Section */}
+            {categories.length > 0 && (
+              <>
+                <div className="px-4 pt-4 pb-2 text-xs font-semibold text-neutral-400 uppercase tracking-wider">
+                  Categories
+                </div>
+                {categories.map((cat: any) => (
+                  <Link
+                    key={cat.slug}
+                    href={`/category/${cat.slug}`}
+                    className="block px-4 py-3 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-lg transition"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {cat.name}
+                  </Link>
+                ))}
+              </>
+            )}
+            
             <Link
               href="/blog"
               className="block px-4 py-3 text-neutral-700 hover:text-primary hover:bg-neutral-50 rounded-lg transition"
