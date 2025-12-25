@@ -108,17 +108,6 @@ export default function TopicPage({ params }: PageProps) {
         {/* Featured Post */}
         {featuredPost && (
           <section className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              </div>
-              <h2 className="font-heading text-xl font-semibold text-neutral-900">
-                Start Here
-              </h2>
-            </div>
-            
             <Link 
               href={`/blog/${featuredPost.slug}`}
               className="group block relative overflow-hidden text-white p-8 lg:p-12 rounded-2xl hover:shadow-2xl transition-all duration-300"
@@ -142,9 +131,11 @@ export default function TopicPage({ params }: PageProps) {
               )}
               
               <div className="relative">
-                <span className="inline-block px-3 py-1 bg-white/20 text-white text-sm font-medium rounded-full mb-4">
-                  Complete Guide
-                </span>
+                {featuredPost.category && (
+                  <span className="inline-block px-3 py-1 bg-white/20 text-white text-sm font-medium rounded-full mb-4">
+                    {featuredPost.category}
+                  </span>
+                )}
                 <h3 className="font-heading text-2xl lg:text-3xl font-semibold mb-4">
                   {featuredPost.title}
                 </h3>
@@ -168,7 +159,7 @@ export default function TopicPage({ params }: PageProps) {
         {clusterPosts.length > 0 && (
           <section>
             <h2 className="font-heading text-2xl font-semibold text-neutral-900 mb-8">
-              More in {pillar.name}
+              Related Articles
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {clusterPosts.map((post: any) => (
