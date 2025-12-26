@@ -10,7 +10,7 @@ export default function AffiliateDisclosurePage() {
         <h1 className="font-heading text-4xl font-bold mb-8">Affiliate Disclosure</h1>
         
         <div className="prose prose-lg">
-          <p className="text-gray-600 mb-6">Last updated: December 25, 2025</p>
+          <p className="text-gray-600 mb-6">Last updated: December 26, 2025</p>
           
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Our Commitment to Transparency</h2>
