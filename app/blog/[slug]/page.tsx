@@ -364,10 +364,15 @@ export default function BlogPost({ params }: PageProps) {
 function formatContent(content: string): string {
   // Simple markdown-like formatting
   return content
+    // Headings
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    // Links - convert [text](url) to anchor tags
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
+    // Bold and italic
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Paragraphs
     .replace(/\n\n/g, '</p><p>')
     .replace(/^(.+)$/gm, '<p>$1</p>')
     .replace(/<p><h/g, '<h')

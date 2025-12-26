@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import pillars from '@/data/pillars.json';
+import { useState, useEffect, useMemo } from 'react';
+import allPillars from '@/data/pillars.json';
+import posts from '@/data/posts.json';
 
 // Try to import categories, fallback to empty array
 let categories: { name: string; slug: string }[] = [];
@@ -16,6 +17,13 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
+  
+  // Only show pillars that have at least one published post
+  const pillars = useMemo(() => {
+    return allPillars.filter((pillar: any) => 
+      posts.some((post: any) => post.pillarId === pillar.id && post.status === 'published')
+    );
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
