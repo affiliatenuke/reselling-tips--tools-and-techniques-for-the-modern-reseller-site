@@ -6,7 +6,7 @@ import allPillars from '@/data/pillars.json';
 import posts from '@/data/posts.json';
 
 // Try to import categories, fallback to empty array
-let categories: { name: string; slug: string }[] = [];
+let categories: { id: string; name: string; slug: string; description: string; pillarId: string }[] = [];
 try {
   categories = require('@/data/categories.json');
 } catch {
