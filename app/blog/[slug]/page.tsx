@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import fs from 'fs';
+import path from 'path';
 import posts from '@/data/posts.json';
 import pillars from '@/data/pillars.json';
 import JsonLd from '@/components/JsonLd';
@@ -11,6 +13,17 @@ const siteName = 'Resale Edge';
 
 interface PageProps {
   params: { slug: string };
+}
+
+// Helper to load post content from individual file (keeps page size small)
+function getPostContent(slug: string): string {
+  try {
+    const contentPath = path.join(process.cwd(), 'data', 'content', `${slug}.json`);
+    const contentData = JSON.parse(fs.readFileSync(contentPath, 'utf-8'));
+    return contentData.content || '';
+  } catch {
+    return '';
+  }
 }
 
 export async function generateStaticParams() {
@@ -67,6 +80,9 @@ export default function BlogPost({ params }: PageProps) {
   if (!post) {
     notFound();
   }
+  
+  // Load content from individual file instead of posts.json
+  const content = getPostContent(params.slug);
 
   // Article structured data
   const articleSchema = {
@@ -213,7 +229,7 @@ export default function BlogPost({ params }: PageProps) {
               {/* Article Content */}
               <div 
                 className="prose prose-lg prose-neutral max-w-none prose-headings:font-heading prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:leading-relaxed prose-p:text-neutral-700 prose-a:text-primary prose-a:no-underline hover:prose-a:underline"
-                dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
+                dangerouslySetInnerHTML={{ __html: formatContent(content) }}
               />
 
               {/* Tags */}
