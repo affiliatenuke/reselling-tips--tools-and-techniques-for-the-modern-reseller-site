@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "id": "024ec143-d6c7-48be-b964-209ab7167419",
+    "nicheId": "a644cb2b-5dad-42bd-8bd6-f5cccfe6f37e",
+    "pillarId": "47296cb2-9f2a-4723-ac48-77b5c59bcfd9",
+    "pillarCategoryId": "",
+    "isFeaturedPost": true,
+    "title": "The Ultimate Reseller Equipment Guide: From Beginner to Pro Setup",
+    "slug": "the-ultimate-reseller-equipment-guide-from-beginner-to-pro-setup",
+    "excerpt": "Stop cobbling together makeshift solutions and build a professional reselling setup that actually scales. This comprehensive guide covers every piece of essential equipment you need, from budget-friendly starter setups to professional-grade systems that handle thousands of items per month.",
+    "metaDescription": "Build a professional reselling setup that scales. Complete guide to essential equipment including printers, scales, photo gear, and packing stations.",
+    "featuredImage": "/images/posts/post-024ec143-d6c7-48be-b964-209ab7167419.png",
+    "category": "",
+    "tags": [
+      "reselling equipment",
+      "reseller tools",
+      "business setup",
+      "scaling",
+      "productivity"
+    ],
+    "authorName": "Charlie",
+    "status": "published",
+    "publishDate": "",
+    "scheduledAt": null,
+    "viewsCount": 0,
+    "contentType": "cluster",
+    "primaryKeyword": null,
+    "secondaryKeywords": null,
+    "searchIntent": "commercial",
+    "targetReader": null,
+    "uniqueAngle": null,
+    "competitorUrls": null,
+    "faqSchema": null,
+    "suggestedInternalLinks": null,
+    "contentScore": null
+  }
+]
