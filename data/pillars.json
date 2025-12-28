@@ -36,25 +36,13 @@
     "seoDescription": null
   },
   {
-    "id": "ca65f8a5-9d03-463d-aec7-7df274251961",
-    "nicheId": "a644cb2b-5dad-42bd-8bd6-f5cccfe6f37e",
-    "name": "Systems",
-    "slug": "systems",
-    "description": "Workflows and processes that help you scale without burnout",
-    "icon": null,
-    "heroImage": null,
-    "sortOrder": 3,
-    "seoTitle": null,
-    "seoDescription": null
-  },
-  {
     "id": "c905a090-aa3b-4b6a-b562-fa666115e215",
     "nicheId": "a644cb2b-5dad-42bd-8bd6-f5cccfe6f37e",
-    "name": "Platforms",
-    "slug": "platforms",
-    "description": "Platform-specific strategies and tips",
+    "name": "Marketplaces",
+    "slug": "marketplaces",
+    "description": "Marketplace specific strategies and tips",
     "icon": null,
-    "heroImage": null,
+    "heroImage": "",
     "sortOrder": 4,
     "seoTitle": null,
     "seoDescription": null

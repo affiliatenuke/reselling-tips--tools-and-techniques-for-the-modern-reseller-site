@@ -10,7 +10,7 @@ export default function TermsPage() {
         <h1 className="font-heading text-4xl font-bold mb-8">Terms of Service</h1>
         
         <div className="prose prose-lg">
-          <p className="text-gray-600 mb-6">Last updated: December 26, 2025</p>
+          <p className="text-gray-600 mb-6">Last updated: December 28, 2025</p>
           
           <section className="mb-8">
             <h2 className="text-2xl font-semibold mb-4">Acceptance of Terms</h2>
