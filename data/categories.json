@@ -7,13 +7,6 @@
     "pillarId": "3ef12742-5a5b-4e0c-9fb3-0639fb9dd3e2"
   },
   {
-    "id": "50b59c6e-8c58-473c-98aa-69ae8eac4f47",
-    "name": "Printers",
-    "slug": "printers",
-    "description": "Best printing equipment for Resellers",
-    "pillarId": "47296cb2-9f2a-4723-ac48-77b5c59bcfd9"
-  },
-  {
     "id": "c44954a4-f654-4e5e-96cc-c0eaf4e51063",
     "name": "Shipping Scales",
     "slug": "shipping-scales",
@@ -39,6 +32,13 @@
     "name": "Packing Tools",
     "slug": "packing-tools",
     "description": "Tools to make packing a breeze",
+    "pillarId": "47296cb2-9f2a-4723-ac48-77b5c59bcfd9"
+  },
+  {
+    "id": "50b59c6e-8c58-473c-98aa-69ae8eac4f47",
+    "name": "Label Printers",
+    "slug": "label-printers",
+    "description": "Best printing equipment for Resellers",
     "pillarId": "47296cb2-9f2a-4723-ac48-77b5c59bcfd9"
   }
 ]
