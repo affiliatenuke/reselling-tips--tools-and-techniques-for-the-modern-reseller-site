@@ -76,6 +76,78 @@
     "linksDown": null
   },
   {
+    "id": "5a1824ca-2c09-4f49-b206-e2683be372ed",
+    "nicheId": "a644cb2b-5dad-42bd-8bd6-f5cccfe6f37e",
+    "pillarId": "47296cb2-9f2a-4723-ac48-77b5c59bcfd9",
+    "clusterId": "c44954a4-f654-4e5e-96cc-c0eaf4e51063",
+    "isFeaturedPost": false,
+    "title": "Best Shipping Scales for Resellers: 2025 Accuracy Guide",
+    "slug": "best-shipping-scales-resellers-2025",
+    "excerpt": "Real-world accuracy testing reveals which shipping scales actually save money for eBay sellers. See our head-to-head comparisons with actual packages.",
+    "metaDescription": "Shipping scale resellers need: accuracy test results on 5 top models. Save money on postage with the right postal scale eBay sellers trust.",
+    "featuredImage": "",
+    "category": "Shipping Scales",
+    "tags": [
+      "postal scale eBay",
+      "shipping scale accuracy",
+      "eBay shipping scale"
+    ],
+    "authorName": "Charlie",
+    "status": "published",
+    "publishDate": "",
+    "scheduledAt": null,
+    "viewsCount": 0,
+    "tierType": "cluster",
+    "postFormat": "blog",
+    "contentType": "cluster",
+    "primaryKeyword": "shipping scale resellers",
+    "secondaryKeywords": [
+      "postal scale eBay",
+      "shipping scale accuracy",
+      "eBay shipping scale"
+    ],
+    "searchIntent": "commercial",
+    "targetReader": "Reseller ready to buy a dedicated shipping scale",
+    "uniqueAngle": "Accuracy testing with real packages",
+    "competitorUrls": [
+      "https://sellerjournal.com/best/best-shipping-label-printers/",
+      "https://www.rollo.com/blog/how-to-set-up-your-shipping-station/"
+    ],
+    "faqSchema": [
+      {
+        "answer": "Shipping scales offer higher weight capacities, larger platforms for boxes, and often include features like tare functions and remote displays. Kitchen scales typically max out at 11-15 pounds and have platforms too small for shipping boxes. Most importantly, shipping scales are certified for trade use, meaning they meet accuracy standards required for commercial transactions.",
+        "question": "What's the difference between a shipping scale and a regular kitchen scale?"
+      },
+      {
+        "answer": "Calibrate your scale monthly if you ship daily, or before each heavy shipping session if you ship less frequently. Always recalibrate after moving your scale or if you notice any accuracy drift. Use certified calibration weights or known reference items like a new ream of paper (5 lbs) or a gallon of water (8.34 lbs).",
+        "question": "How often should I calibrate my shipping scale?"
+      },
+      {
+        "answer": "While bathroom scales can weigh heavy items, they lack the precision needed for shipping. Most bathroom scales only display weight in 0.5-pound increments, which could cost you significant money when packages fall near USPS weight thresholds. A proper shipping scale displays weight in 0.1-ounce increments up to at least 10 pounds.",
+        "question": "Can I use a bathroom scale for heavy packages?"
+      },
+      {
+        "answer": "Wireless scales themselves don't affect accuracy, but low batteries can cause erratic readings. If you choose a wireless model, keep fresh batteries on hand and replace them at the first sign of inconsistent weights. Some wireless scales also suffer from interference near other electronics, so test placement carefully.",
+        "question": "Do wireless shipping scales affect accuracy?"
+      },
+      {
+        "answer": "USB-connected scales save time and prevent entry errors if you ship more than 20 packages daily. Scales like the DYMO M10 integrate seamlessly with most shipping platforms. However, standalone scales work fine for lower volumes and don't require driver updates or compatibility troubleshooting.",
+        "question": "Should I get a scale that connects to shipping software?"
+      }
+    ],
+    "suggestedInternalLinks": [
+      "shipping station setup guide",
+      "USPS shipping tips for resellers",
+      "comparing shipping carriers for eBay",
+      "shipping supplies buying guide",
+      "thermal label printer reviews"
+    ],
+    "contentScore": null,
+    "linksUp": null,
+    "linksSideways": null,
+    "linksDown": null
+  },
+  {
     "id": "859129df-f7ef-4c9a-9802-944e14291389",
     "nicheId": "a644cb2b-5dad-42bd-8bd6-f5cccfe6f37e",
     "pillarId": "47296cb2-9f2a-4723-ac48-77b5c59bcfd9",
@@ -110,6 +182,150 @@
     "competitorUrls": null,
     "faqSchema": null,
     "suggestedInternalLinks": null,
+    "contentScore": null,
+    "linksUp": null,
+    "linksSideways": null,
+    "linksDown": null
+  },
+  {
+    "id": "c8bbaadc-286f-4e8e-94cc-5436e9d03b93",
+    "nicheId": "a644cb2b-5dad-42bd-8bd6-f5cccfe6f37e",
+    "pillarId": "47296cb2-9f2a-4723-ac48-77b5c59bcfd9",
+    "clusterId": "a0400a9f-44e2-4e9b-95e0-edd6bd5a087a",
+    "isFeaturedPost": false,
+    "title": "Budget Reseller Photo Setup That Actually Looks Professional",
+    "slug": "budget-reseller-photo-setup",
+    "excerpt": "You don't need expensive equipment to take professional product photos. Here's exactly how to build a reseller photo setup that gets results without breaking the bank.",
+    "metaDescription": "Build a professional reseller photo setup on a budget. Learn exact equipment, lighting tricks, and smartphone techniques that boost eBay product photos.",
+    "featuredImage": "",
+    "category": "Photo Equipment",
+    "tags": [
+      "eBay product photos",
+      "product photography lighting",
+      "budget photography equipment"
+    ],
+    "authorName": "charlie",
+    "status": "published",
+    "publishDate": "",
+    "scheduledAt": null,
+    "viewsCount": 0,
+    "tierType": "cluster",
+    "postFormat": "blog",
+    "contentType": "cluster",
+    "primaryKeyword": "reseller photo setup",
+    "secondaryKeywords": [
+      "eBay product photos",
+      "product photography lighting",
+      "budget photography equipment"
+    ],
+    "searchIntent": "commercial",
+    "targetReader": "Reseller wanting to improve photo quality",
+    "uniqueAngle": "Budget setups that look professional",
+    "competitorUrls": [
+      "https://www.etsy.com/seller-handbook/article/48046234540",
+      "https://webinterpret.com/en/blog/how-to-build-your-ebay-business-with-ai"
+    ],
+    "faqSchema": [
+      {
+        "answer": "You can create professional-looking photos with just $15-20 in supplies: white poster board for backgrounds and foam board for light reflection. If you already own a smartphone, that's your camera sorted. The key is understanding lighting and composition, not expensive equipment.",
+        "question": "What's the minimum budget for a professional-looking reseller photo setup?"
+      },
+      {
+        "answer": "Lightboxes work well for jewelry and very small items, but they're often too restrictive for general reselling. A simple white background setup gives you more flexibility for different product sizes. If you do need one, a portable lightbox can be useful for specific categories.",
+        "question": "Should I use a lightbox for small items?"
+      },
+      {
+        "answer": "Aim for 6-12 photos per listing. Cover all angles, any defects, tags/labels, and size references. More photos build buyer confidence and reduce questions. The first photo should be your best angle with perfect lighting—this determines whether buyers click through.",
+        "question": "How many photos should I take per listing?"
+      },
+      {
+        "answer": "Watermarks rarely prevent theft and often make photos look less professional. Focus on taking photos that are good but not worth stealing—clear enough to show condition but not artistic enough for others to want. Your time is better spent photographing more products.",
+        "question": "Do I need to watermark my photos?"
+      },
+      {
+        "answer": "For smartphones, use the standard photo mode with HDR off. For cameras, use aperture priority mode (A or Av) set to f/8-f/11 for maximum sharpness. Keep ISO as low as possible (100-400) and let the camera choose shutter speed. Use a timer or remote to avoid camera shake.",
+        "question": "What camera settings should I use for product photos?"
+      }
+    ],
+    "suggestedInternalLinks": [
+      "batch photo editing workflow for resellers",
+      "lighting equipment comparison for product photography",
+      "smartphone photography apps for resellers",
+      "photo backdrop alternatives tested",
+      "seasonal product photography tips"
+    ],
+    "contentScore": null,
+    "linksUp": null,
+    "linksSideways": null,
+    "linksDown": null
+  },
+  {
+    "id": "2d6b86d5-01bb-4b2f-89b8-1f4522fcb6d7",
+    "nicheId": "a644cb2b-5dad-42bd-8bd6-f5cccfe6f37e",
+    "pillarId": "47296cb2-9f2a-4723-ac48-77b5c59bcfd9",
+    "clusterId": "38175515-37c5-431d-b411-3a4eb697a51b",
+    "isFeaturedPost": false,
+    "title": "Best Tape Gun for Shipping: Save 30+ Minutes Daily",
+    "slug": "best-tape-gun-shipping",
+    "excerpt": "Cut your packing time by 40% with the right tape dispenser. Compare top models and calculate exact time savings for your reselling operation.",
+    "metaDescription": "Best tape gun shipping tools tested. Save 30+ minutes daily packing orders. Time savings calculator and honest reviews for resellers.",
+    "featuredImage": "",
+    "category": "Packing Tools",
+    "tags": [
+      "packing tools reseller",
+      "tape dispenser time savings",
+      "shipping station efficiency"
+    ],
+    "authorName": "Charlie",
+    "status": "published",
+    "publishDate": "",
+    "scheduledAt": null,
+    "viewsCount": 0,
+    "tierType": "blog",
+    "postFormat": "blog",
+    "contentType": "cluster",
+    "primaryKeyword": "tape gun shipping",
+    "secondaryKeywords": [
+      "packing tools reseller",
+      "tape dispenser time savings",
+      "shipping station efficiency"
+    ],
+    "searchIntent": "commercial",
+    "targetReader": "Reseller wanting to speed up packing",
+    "uniqueAngle": "Time savings calculation per tool",
+    "competitorUrls": [
+      "https://help.erank.com/blog/creating-a-shipping-station-for-your-workspace/",
+      "https://www.etsy.com/seller-handbook/article/48046234540"
+    ],
+    "faqSchema": [
+      {
+        "answer": "Stick with 2-inch tape for 90% of packages. It provides enough coverage for secure sealing without waste. Three-inch tape works for heavy packages over 30 pounds, but you'll use 50% more tape for minimal strength gain.",
+        "question": "What tape width works best for shipping?"
+      },
+      {
+        "answer": "Quality tape gun blades last 5,000-10,000 cuts with proper use. Cutting on angles or forcing through multiple tape layers dulls them faster. Keep replacement blades on hand – they're usually under $5 and swap in seconds.",
+        "question": "How long do tape gun blades last?"
+      },
+      {
+        "answer": "If you pack more than 30 packages daily, yes. The ergonomic investment prevents repetitive strain injuries. For lower volumes, a standard grip works fine. Your daily volume, not comfort features, should drive your decision.",
+        "question": "Should I buy a tape gun with a comfort grip?"
+      },
+      {
+        "answer": "Handheld wins for flexibility and speed. Desktop dispensers work for stationary packing stations with consistent box sizes. Most resellers need the ability to tape packages of varying sizes, making handheld the practical choice.",
+        "question": "What's better: handheld or desktop tape dispensers?"
+      },
+      {
+        "answer": "Yes, but performance varies. Quality guns handle any tape, but cheap tape in good guns still underperforms. Match your tape quality to your gun quality. Premium tape in a premium gun delivers the best results and actually costs less per package due to efficiency.",
+        "question": "Can I use packing tape guns with different tape brands?"
+      }
+    ],
+    "suggestedInternalLinks": [
+      "shipping-station-setup-complete-guide",
+      "packing-materials-cost-comparison",
+      "ergonomic-tools-for-resellers",
+      "shipping-efficiency-metrics",
+      "bulk-shipping-supplies-guide"
+    ],
     "contentScore": null,
     "linksUp": null,
     "linksSideways": null,
