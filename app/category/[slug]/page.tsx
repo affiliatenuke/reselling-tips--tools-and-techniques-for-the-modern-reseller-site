@@ -1,14 +1,28 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import PostCard from '@/components/PostCard';
+import TypeBadge from '@/components/TypeBadge';
+import ContentCard from '@/components/ContentCard';
+import QuickNavBox from '@/components/QuickNavBox';
+import BackToSection from '@/components/BackToSection';
 import posts from '@/data/posts.json';
+import pillars from '@/data/pillars.json';
 
-// Try to import categories, fallback to empty array
-let categories: { id: string; name: string; slug: string; description: string; pillarId: string }[] = [];
+// Try to import categories (clusters), fallback to empty array
+let clusters: { id: string; name: string; slug: string; description: string; pillarId: string }[] = [];
 try {
-  categories = require('@/data/categories.json');
+  clusters = require('@/data/categories.json');
 } catch {
-  categories = [];
+  clusters = [];
+}
+
+// Try to import post content files
+async function getPostContent(slug: string): Promise<string> {
+  try {
+    const contentData = require(`@/data/content/${slug}.json`);
+    return contentData.content || '';
+  } catch {
+    return '';
+  }
 }
 
 interface PageProps {
@@ -16,93 +30,180 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return categories.map((cat: any) => ({
-    slug: cat.slug,
+  return clusters.map((cluster: any) => ({
+    slug: cluster.slug,
   }));
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const category = categories.find((c: any) => c.slug === params.slug);
+  const cluster = clusters.find((c: any) => c.slug === params.slug);
   
-  if (!category) {
-    return { title: 'Category Not Found' };
+  if (!cluster) {
+    return { title: 'Cluster Not Found' };
   }
 
   return {
-    title: `${(category as any).name} Articles | Resale Edge`,
-    description: `Browse all ${(category as any).name.toLowerCase()} articles and guides on Resale Edge`,
+    title: `${(cluster as any).name} | Resale Edge`,
+    description: (cluster as any).description || `Explore ${(cluster as any).name} articles and guides on Resale Edge`,
   };
 }
 
-export default function CategoryPage({ params }: PageProps) {
-  const category = categories.find((c: any) => c.slug === params.slug) as any;
+export default async function ClusterPage({ params }: PageProps) {
+  const cluster = clusters.find((c: any) => c.slug === params.slug) as any;
 
-  if (!category) {
+  if (!cluster) {
     notFound();
   }
 
-  // Filter posts by clusterId (new 3-tier system) or legacy category string
-  const categoryPosts = posts.filter((post: any) => {
-    // New system: match by clusterId (3-tier hierarchy)
-    if (post.clusterId && category.id) {
-      return post.clusterId === category.id;
-    }
-    // Legacy fallback: match by category string
-    if (post.category) {
-      return post.category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') === params.slug;
-    }
-    return false;
-  }) as any[];
+  // Get parent pillar
+  const parentPillar = pillars.find((p: any) => p.id === cluster.pillarId) as any;
+
+  // Get all posts for this cluster
+  const clusterPosts = posts.filter((post: any) => post.clusterId === cluster.id) as any[];
+  
+  // Cluster-tier post (the main article for this cluster)
+  const clusterPost = clusterPosts.find((post: any) => post.tierType === 'cluster') as any;
+  const clusterContent = clusterPost ? await getPostContent(clusterPost.slug) : '';
+  
+  // Blog-tier posts (supporting articles)
+  const blogPosts = clusterPosts.filter((post: any) => post.tierType === 'blog' || (!post.tierType && post.tierType !== 'cluster'));
+
+  // Quick nav items (blog posts as children)
+  const quickNavItems = blogPosts.map((post: any) => ({
+    title: post.title,
+    href: `/blog/${post.slug}`,
+  }));
+
+  // Sibling clusters (other clusters under the same pillar)
+  const siblingClusters = clusters.filter((c: any) => 
+    c.pillarId === cluster.pillarId && c.id !== cluster.id
+  ).map((c: any) => {
+    const siblingPosts = posts.filter((post: any) => post.clusterId === c.id);
+    return { ...c, articleCount: siblingPosts.length };
+  });
+
+  // Back navigation links
+  const backLinks = [
+    ...(parentPillar ? [{ label: parentPillar.name, href: `/topics/${parentPillar.slug}` }] : []),
+  ];
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <div className="relative bg-gradient-to-br from-neutral-50 to-white border-b border-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
-          {/* Breadcrumb */}
-          <nav className="absolute top-4 right-4 sm:top-6 sm:right-6 flex items-center text-sm text-neutral-500">
-            <Link href="/" className="hover:text-primary transition">Home</Link>
-            <svg className="w-4 h-4 mx-2 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-            <span className="text-neutral-900 font-medium">{category.name}</span>
-          </nav>
-          
-          <div className="max-w-3xl mx-auto text-center pt-8">
-            <span className="inline-block px-4 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
-              Category
-            </span>
-            <h1 className="font-heading text-4xl lg:text-5xl font-semibold text-neutral-900 mb-4">
-              {category.name}
-            </h1>
-            <p className="text-lg lg:text-xl text-neutral-600 max-w-2xl mx-auto">
-              {categoryPosts.length} article{categoryPosts.length !== 1 ? 's' : ''} in this category
-            </p>
-          </div>
-        </div>
+    <div className="min-h-screen bg-white">
+      {/* Breadcrumb */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <nav className="flex items-center text-sm text-neutral-500 flex-wrap gap-1" aria-label="Breadcrumb">
+          <Link href="/" className="hover:text-primary transition">Home</Link>
+          {parentPillar && (
+            <>
+              <svg className="w-4 h-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+              <Link href={`/topics/${parentPillar.slug}`} className="hover:text-primary transition">
+                {parentPillar.name}
+              </Link>
+            </>
+          )}
+          <svg className="w-4 h-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+          <span className="text-neutral-900 font-medium">{cluster.name}</span>
+        </nav>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        {/* Articles */}
-        {categoryPosts.length > 0 ? (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categoryPosts.map((post: any) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16 bg-neutral-50 rounded-2xl border border-neutral-100">
-            <div className="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-              </svg>
+      {/* Header */}
+      <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <TypeBadge type="cluster" />
+        
+        <h1 className="font-heading text-4xl lg:text-5xl font-bold text-neutral-900 mt-4 mb-4">
+          {cluster.name}
+        </h1>
+        
+        {cluster.description && (
+          <p className="text-lg lg:text-xl text-neutral-600 max-w-3xl">
+            {cluster.description}
+          </p>
+        )}
+      </header>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        {/* IN THIS GUIDE - Quick Nav Box with blog posts */}
+        {quickNavItems.length > 0 && (
+          <QuickNavBox items={quickNavItems} />
+        )}
+
+        {/* ARTICLE CONTENT - Cluster post content */}
+        {clusterPost && clusterContent && (
+          <article className="prose prose-lg prose-neutral max-w-none mb-16 prose-headings:font-heading prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:leading-relaxed prose-p:text-neutral-700 prose-a:text-primary prose-a:no-underline hover:prose-a:underline">
+            <div dangerouslySetInnerHTML={{ __html: formatContent(clusterContent) }} />
+          </article>
+        )}
+
+        {/* ARTICLES IN THIS SECTION - Blog post cards */}
+        {blogPosts.length > 0 && (
+          <section className="mb-16">
+            <h2 className="font-heading text-2xl font-semibold text-neutral-900 mb-8">
+              Articles in This Section
+            </h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {blogPosts.map((post: any) => (
+                <ContentCard
+                  key={post.id}
+                  title={post.title}
+                  slug={post.slug}
+                  description={post.excerpt || post.seoDescription}
+                  type="blog"
+                  format={post.articleFormat}
+                  href={`/blog/${post.slug}`}
+                />
+              ))}
             </div>
-            <p className="text-neutral-500">
-              No articles in this category yet. Check back soon!
-            </p>
-          </div>
+          </section>
+        )}
+
+        {/* RELATED SECTIONS - Sibling clusters */}
+        {siblingClusters.length > 0 && (
+          <section className="border-t border-neutral-200 pt-12 mb-8">
+            <h2 className="font-heading text-xl font-semibold text-neutral-900 mb-6">
+              Related Sections
+            </h2>
+            <div className="flex flex-wrap gap-4">
+              {siblingClusters.map((sibling: any) => (
+                <Link
+                  key={sibling.id}
+                  href={`/category/${sibling.slug}`}
+                  className="inline-flex items-center gap-2 text-primary hover:text-secondary transition"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                  {sibling.name}
+                  {sibling.articleCount > 0 && (
+                    <span className="text-neutral-400 text-sm">({sibling.articleCount})</span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
       </div>
+
+      {/* Back navigation */}
+      {backLinks.length > 0 && (
+        <BackToSection links={backLinks} />
+      )}
     </div>
   );
+}
+
+function formatContent(content: string): string {
+  return content
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/^(.+)$/gm, '<p>$1</p>')
+    .replace(/<p><h/g, '<h')
+    .replace(/<\/h([23])><\/p>/g, '</h$1>');
 }

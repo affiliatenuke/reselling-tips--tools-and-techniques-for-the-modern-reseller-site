@@ -6,7 +6,17 @@ import path from 'path';
 import posts from '@/data/posts.json';
 import pillars from '@/data/pillars.json';
 import JsonLd from '@/components/JsonLd';
-import PostCard from '@/components/PostCard';
+import TypeBadge from '@/components/TypeBadge';
+import ContentCard from '@/components/ContentCard';
+import BackToSection from '@/components/BackToSection';
+
+// Try to import clusters (categories)
+let clusters: { id: string; name: string; slug: string; description: string; pillarId: string }[] = [];
+try {
+  clusters = require('@/data/categories.json');
+} catch {
+  clusters = [];
+}
 
 const baseUrl = 'https://resaleedge.com';
 const siteName = 'Resale Edge';
@@ -24,6 +34,13 @@ function getPostContent(slug: string): string {
   } catch {
     return '';
   }
+}
+
+// Estimate reading time
+function getReadingTime(content: string): number {
+  const wordsPerMinute = 200;
+  const wordCount = content.split(/\s+/).length;
+  return Math.max(1, Math.ceil(wordCount / wordsPerMinute));
 }
 
 export async function generateStaticParams() {
@@ -83,6 +100,11 @@ export default function BlogPost({ params }: PageProps) {
   
   // Load content from individual file instead of posts.json
   const content = getPostContent(params.slug);
+  const readingTime = getReadingTime(content);
+
+  // Get parent cluster and pillar
+  const cluster = post.clusterId ? clusters.find((c: any) => c.id === post.clusterId) as any : null;
+  const pillar = post.pillarId ? pillars.find((p: any) => p.id === post.pillarId) as any : null;
 
   // Article structured data
   const articleSchema = {
@@ -114,36 +136,37 @@ export default function BlogPost({ params }: PageProps) {
   };
 
   // Breadcrumb structured data
+  const breadcrumbItems = [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+  ];
+  let position = 2;
+  if (pillar) {
+    breadcrumbItems.push({ '@type': 'ListItem', position: position++, name: pillar.name, item: `${baseUrl}/topics/${pillar.slug}` });
+  }
+  if (cluster) {
+    breadcrumbItems.push({ '@type': 'ListItem', position: position++, name: cluster.name, item: `${baseUrl}/category/${cluster.slug}` });
+  }
+  breadcrumbItems.push({ '@type': 'ListItem', position: position, name: post.title, item: `${baseUrl}/blog/${post.slug}` });
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: `${baseUrl}/blog`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: post.title,
-        item: `${baseUrl}/blog/${post.slug}`,
-      },
-    ],
+    itemListElement: breadcrumbItems,
   };
 
-  // Get related posts from same pillar
-  const pillar = post.pillarId ? pillars.find((p: any) => p.id === post.pillarId) as any : null;
-  const relatedPosts = pillar 
-    ? posts.filter((p: any) => p.pillarId === post.pillarId && p.id !== post.id).slice(0, 3) as any[]
-    : posts.filter((p: any) => p.id !== post.id).slice(0, 3) as any[];
+  // Sibling posts (same cluster)
+  const siblingPosts = cluster 
+    ? posts.filter((p: any) => p.clusterId === cluster.id && p.id !== post.id && p.tierType === 'blog').slice(0, 6) as any[]
+    : [];
+
+  // Back navigation links
+  const backLinks = [];
+  if (cluster) {
+    backLinks.push({ label: cluster.name, href: `/category/${cluster.slug}` });
+  }
+  if (pillar) {
+    backLinks.push({ label: pillar.name, href: `/topics/${pillar.slug}` });
+  }
 
   return (
     <>
@@ -157,30 +180,41 @@ export default function BlogPost({ params }: PageProps) {
             {/* Main Content Column */}
             <div className="lg:col-span-8">
               {/* Breadcrumb */}
-              <nav className="flex items-center text-sm text-neutral-500 mb-6">
+              <nav className="flex items-center text-sm text-neutral-500 mb-6 flex-wrap gap-1">
                 <Link href="/" className="hover:text-primary transition">Home</Link>
-                <svg className="w-4 h-4 mx-2 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
                 {pillar && (
                   <>
+                    <svg className="w-4 h-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                     <Link href={`/topics/${pillar.slug}`} className="hover:text-primary transition">
                       {pillar.name}
                     </Link>
-                    <svg className="w-4 h-4 mx-2 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
                   </>
                 )}
+                {cluster && (
+                  <>
+                    <svg className="w-4 h-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <Link href={`/category/${cluster.slug}`} className="hover:text-primary transition">
+                      {cluster.name}
+                    </Link>
+                  </>
+                )}
+                <svg className="w-4 h-4 text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
                 <span className="text-neutral-900 truncate max-w-[200px]">{post.title}</span>
               </nav>
 
-              {/* Category badge */}
-              {post.category && (
-                <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full mb-4">
-                  {post.category}
+              {/* Article format badge and reading time */}
+              <div className="flex items-center gap-3 mb-4">
+                <TypeBadge type="blog" format={post.articleFormat} />
+                <span className="text-sm text-neutral-500">
+                  {readingTime} min read
                 </span>
-              )}
+              </div>
               
               {/* Title */}
               <h1 className="font-heading text-3xl sm:text-4xl font-semibold text-neutral-900 mb-4 leading-tight">
@@ -269,53 +303,6 @@ export default function BlogPost({ params }: PageProps) {
             {/* Sidebar Column */}
             <aside className="lg:col-span-4 mt-12 lg:mt-0">
               <div className="lg:sticky lg:top-24 space-y-8">
-                {/* Related Articles in Sidebar */}
-                {relatedPosts.length > 0 && (
-                  <div className="bg-neutral-50 rounded-xl p-6 border border-neutral-100">
-                    <h3 className="font-heading font-semibold text-neutral-900 mb-4">
-                      Related Articles
-                    </h3>
-                    <div className="space-y-4">
-                      {relatedPosts.map((relatedPost: any) => (
-                        <Link 
-                          key={relatedPost.id} 
-                          href={`/blog/${relatedPost.slug}`}
-                          className="block group"
-                        >
-                          <div className="flex gap-3">
-                            {relatedPost.featuredImage && (
-                              <img 
-                                src={relatedPost.featuredImage} 
-                                alt="" 
-                                className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
-                              />
-                            )}
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-sm font-medium text-neutral-900 group-hover:text-primary transition line-clamp-2 leading-snug">
-                                {relatedPost.title}
-                              </h4>
-                              {relatedPost.publishDate && (
-                                <time className="text-xs text-neutral-500 mt-1 block">
-                                  {new Date(relatedPost.publishDate).toLocaleDateString('en-US', { 
-                                    month: 'short', 
-                                    day: 'numeric' 
-                                  })}
-                                </time>
-                              )}
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Placeholder for future ads */}
-                {/* Ad slot 1 - 300x250 or similar */}
-                <div className="hidden lg:block">
-                  {/* Future ad placement area */}
-                </div>
-
                 {/* Topic/Pillar Link */}
                 {pillar && (
                   <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl p-6 border border-primary/10">
@@ -336,25 +323,59 @@ export default function BlogPost({ params }: PageProps) {
                     </Link>
                   </div>
                 )}
+
+                {/* Cluster Link */}
+                {cluster && (
+                  <div className="bg-neutral-50 rounded-xl p-6 border border-neutral-100">
+                    <h3 className="font-heading font-semibold text-neutral-900 mb-2">
+                      More in {cluster.name}
+                    </h3>
+                    <p className="text-sm text-neutral-600 mb-4">
+                      {cluster.description || `See all ${cluster.name.toLowerCase()} articles.`}
+                    </p>
+                    <Link 
+                      href={`/category/${cluster.slug}`}
+                      className="inline-flex items-center text-sm font-medium text-primary hover:underline"
+                    >
+                      View section
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                )}
               </div>
             </aside>
           </div>
         </div>
 
-        {/* Bottom Related Articles - full width for more visibility */}
-        {relatedPosts.length > 0 && (
+        {/* Sibling Articles - Articles in the same section */}
+        {siblingPosts.length > 0 && (
           <section className="bg-neutral-50 border-t border-neutral-100 py-12 lg:py-16 mt-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="font-heading text-2xl font-semibold text-neutral-900 mb-8">
-                More Articles You Might Like
+                More in This Section
               </h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {relatedPosts.map((relatedPost: any) => (
-                  <PostCard key={relatedPost.id} post={relatedPost} />
+                {siblingPosts.map((siblingPost: any) => (
+                  <ContentCard
+                    key={siblingPost.id}
+                    title={siblingPost.title}
+                    slug={siblingPost.slug}
+                    description={siblingPost.excerpt || siblingPost.seoDescription}
+                    type="blog"
+                    format={siblingPost.articleFormat}
+                    href={`/blog/${siblingPost.slug}`}
+                  />
                 ))}
               </div>
             </div>
           </section>
+        )}
+
+        {/* Back navigation */}
+        {backLinks.length > 0 && (
+          <BackToSection links={backLinks} />
         )}
       </article>
     </>
@@ -362,17 +383,12 @@ export default function BlogPost({ params }: PageProps) {
 }
 
 function formatContent(content: string): string {
-  // Simple markdown-like formatting
   return content
-    // Headings
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    // Links - convert [text](url) to anchor tags
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
-    // Bold and italic
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // Paragraphs
     .replace(/\n\n/g, '</p><p>')
     .replace(/^(.+)$/gm, '<p>$1</p>')
     .replace(/<p><h/g, '<h')
