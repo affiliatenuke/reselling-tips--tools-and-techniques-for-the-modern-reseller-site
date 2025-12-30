@@ -41,11 +41,11 @@ export default function CategoryPage({ params }: PageProps) {
     notFound();
   }
 
-  // Filter posts by pillarCategoryId (new system) or legacy category string
+  // Filter posts by clusterId (new 3-tier system) or legacy category string
   const categoryPosts = posts.filter((post: any) => {
-    // New system: match by pillarCategoryId
-    if (post.pillarCategoryId && category.id) {
-      return post.pillarCategoryId === category.id;
+    // New system: match by clusterId (3-tier hierarchy)
+    if (post.clusterId && category.id) {
+      return post.clusterId === category.id;
     }
     // Legacy fallback: match by category string
     if (post.category) {
